@@ -8,6 +8,10 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # GhostScript, ImageMagick and IPPTool are additional to the original implementation
 # They allow for advanced post-processing of any PDFs created
 
+RUN apt-get ghostscript
+RUN apt-get imagemagick
+RUN apt-get ipptool
+
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         sudo \
@@ -32,9 +36,6 @@ RUN apt-get update \
         bash-completion \
         procps \
         whois \
-        ghostscript \
-        imagemagick \
-        ipptool \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
