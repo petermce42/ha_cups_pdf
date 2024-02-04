@@ -24,7 +24,7 @@ ports_description:
 map:
   - config:rw
   - share:rw
-stage:
-  - experimental
+
+stage: experimental
 
 
