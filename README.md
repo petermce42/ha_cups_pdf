@@ -1,4 +1,4 @@
-# homeassistant addon cups airprint pdf
+# Peter's Home Assistant Addon with CUPS, Airprint and PDFs for the Amazon Sticky Note Printer
 CUPS addon with working Avahi in reflector mode and PDF output mirrored to host.  Based on the work of zajac-grzegorz.
 
 Tested with Home Assistant version **2023.9**
