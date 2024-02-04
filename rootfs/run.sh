@@ -26,7 +26,7 @@ bashio::log.info "Updating ImageMagick policy"
 cp -v /config/cups-pdf/policy.xml /etc/ImageMagick-6/
 
 
-# grab a copy of the post-processing script because apparmor prevents it from being executed from /config
+# grab a copy of the post-processing script in case apparmor prevents it from being executed from /config
 bashio::log.info "Copying post-processing script"
 cp -v /config/cups-pdf/postprocess.sh /data/cups/
 
