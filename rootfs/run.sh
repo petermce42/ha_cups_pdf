@@ -31,6 +31,11 @@ bashio::log.info "Copying post-processing script"
 cp -v /config/cups-pdf/postprocess.sh /data/cups/
 
 
+# update apparmor config for cupsd to prevent apparmor from blocking script execution
+bashio::log.info "Updating cupsd apparmor"
+cp -v /config/cups-pdf/usr.bin.cupsd /etc/apparmor.d/
+
+
 # start CUPS
 bashio::log.info "Starting CUPS server as CMD from S6"
 cupsd -f
