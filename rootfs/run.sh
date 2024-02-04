@@ -3,23 +3,34 @@
 ulimit -n 1048576
 
 # wait until the avahi daemon has started up
-
 until [ -e /var/run/avahi-daemon/socket ]; do
   sleep 1s
 done
 
-# move cups from /etc to /data
 
+# Update cups-pdf.conf
+bashio::log.info "Updating cups-pdf.conf"
+cp -v /config/cups-pdf/cups-pdf.conf /etc/cups/
+
+
+# move cups from /etc to /data
 bashio::log.info "Preparing directories"
 cp -v -R /etc/cups /data
 rm -v -fR /etc/cups
-
-# link the two
-
+# and link the two
 ln -v -s /data/cups /etc/cups
 
+
+# relax imagemagick policy
+bashio::log.info "Updating ImageMagick policy"
+cp -v /config/cups-pdf/policy.xml /etc/ImageMagick-6/
+
+
+# grab a copy of the post-processing script because apparmor prevents it from being executed from /config
+bashio::log.info "Copying post-processing script"
+cp -v /config/cups-pdf/postprocess.sh /data/cups/
+
+
 # start CUPS
-
 bashio::log.info "Starting CUPS server as CMD from S6"
-
 cupsd -f
