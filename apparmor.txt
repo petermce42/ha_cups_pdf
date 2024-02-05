@@ -28,7 +28,7 @@ profile cupsik flags=(attach_disconnected,mediate_deleted) {
   /data/** rw,
 
   # Start new profile for service
-  /usr/bin/cupsd cx -> cupsd,
+  /usr/sbin/cupsd cx -> cupsd,
 
   profile cupsd flags=(attach_disconnected,mediate_deleted,complain) {
     #include <abstractions/base>
@@ -255,7 +255,7 @@ profile cupsik flags=(attach_disconnected,mediate_deleted) {
 
     # Access to mapped volumes specified in config.yaml
     /share/** rw, 
-    /config/** rwx, 
+    /config/** rix, 
 
     # Access required for service functionality
     /usr/bin/cupsd r,
