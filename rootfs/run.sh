@@ -33,7 +33,7 @@ cp -v /config/cups-pdf/postprocess.sh /data/cups/
 
 # update apparmor config for cupsd to prevent apparmor from blocking script execution
 bashio::log.info "Updating cupsd apparmor"
-cp -v /config/cups-pdf/usr.bin.cupsd /etc/apparmor.d/
+cp -v /config/cups-pdf/usr.sbin.cupsd /etc/apparmor.d/
 
 
 # start CUPS
