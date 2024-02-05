@@ -7,6 +7,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # ImageMagick is additional to the original implementation
 # to allow for advanced post-processing of any PDFs created
+# v7 not yet available, unfortunately
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \

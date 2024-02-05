@@ -8,7 +8,7 @@ until [ -e /var/run/avahi-daemon/socket ]; do
 done
 
 
-# Update cups-pdf.conf
+# Update cups-pdf.conf with a version that specifies post-processing
 bashio::log.info "Updating cups-pdf.conf"
 cp -v /config/cups-pdf/cups-pdf.conf /etc/cups/
 
@@ -21,20 +21,18 @@ rm -v -fR /etc/cups
 ln -v -s /data/cups /etc/cups
 
 
-# relax imagemagick policy
+# relax imagemagick policy to allow PDFs to be created
 bashio::log.info "Updating ImageMagick policy"
 cp -v /config/cups-pdf/policy.xml /etc/ImageMagick-6/
 
 
-# grab a copy of the post-processing script in case apparmor prevents it from being executed from /config
-bashio::log.info "Copying post-processing script"
-cp -v /config/cups-pdf/postprocess.sh /data/cups/
-
-
 # Fix permissions so that post-processing of PDFs works
-# (The script is run as user 'nobody')
-bashio::log.info "Modifying file and directory permissions"
+# (Note: The script is run as user 'nobody')
+bashio::log.info "Modifying file and directory permissions for PDF post-processing"
 chmod 755 /config/cups-pdf/postprocess.sh
+touch /var/spool/cups-pdf/output.bmp
+touch /var/spool/cups-pdf/output2.bmp
+touch /var/spool/cups-pdf/output.pdf
 chmod -R 777 /var/spool/
 chmod -R 777 /share
 

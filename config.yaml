@@ -18,7 +18,7 @@ ports_description:
   631/udp: For other devices on the local network to print to this server
 # ingress: false
 
-# let's experiment with a web UI for this:
+# experiment with a web UI for this:
 #webui: http://[HOST]:[PORT:631]/admin
 
 # /share added to receive PDFs and logs from the container
