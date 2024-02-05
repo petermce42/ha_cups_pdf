@@ -54,12 +54,6 @@ RUN useradd \
 # Publish the IPP port to the local network
 EXPOSE 631
 
-# Fix permissions so that post-processing of PDFs works
-# (The script is run as user 'nobody')
-RUN chmod 755 /config/cups-pdf/postprocess.sh
-RUN chmod -R 777 /var/spool/
-RUN chmod -R 777 /share
-
 # Now we're ready to roll...
 RUN chmod a+x /run.sh
 

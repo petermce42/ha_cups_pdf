@@ -31,9 +31,12 @@ bashio::log.info "Copying post-processing script"
 cp -v /config/cups-pdf/postprocess.sh /data/cups/
 
 
-# update apparmor config for cupsd to prevent apparmor from blocking script execution
-bashio::log.info "Updating cupsd apparmor"
-cp -v /config/cups-pdf/usr.sbin.cupsd /etc/apparmor.d/
+# Fix permissions so that post-processing of PDFs works
+# (The script is run as user 'nobody')
+bashio::log.info "Modifying file and directory permissions"
+chmod 755 /config/cups-pdf/postprocess.sh
+chmod -R 777 /var/spool/
+chmod -R 777 /share
 
 
 # start CUPS
